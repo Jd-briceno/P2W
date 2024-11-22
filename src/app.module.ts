@@ -7,7 +7,7 @@ import { DiagnosticoModule } from './diagnostico/diagnostico.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres', // Cambia según el tipo de base de datos que estés usando
+      type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'your_db_username',
