@@ -11,21 +11,21 @@ Este proyecto utiliza **Nest.js** con **TypeScript** y **TypeORM** para conectar
 
 1. Clona el repositorio:
 
-   \```
+   ```shell
    git clone <URL del repositorio>
-   \```
+   ```
 
 2. Navega al directorio del proyecto:
 
-   \```
+   ```shell
    cd nombre-del-proyecto
-   \```
+   ```
 
 3. Instala todas las dependencias necesarias:
 
-   \```
+   ```shell
    npm install
-   \```
+   ```
 
 ## Variables de Entorno
 
@@ -35,9 +35,9 @@ Este proyecto utiliza **Nest.js** con **TypeScript** y **TypeORM** para conectar
 
 - Este proyecto se conecta a la base de datos **PostgreSQL** usando **Docker Compose**. Para crear la base de datos, utiliza el siguiente comando:
 
-  \```
+  ```shell
   npm run start:dbs
-  \```
+  ```
 
   Esto iniciará el contenedor de Docker para **PostgreSQL** con la configuración especificada.
 
@@ -45,9 +45,9 @@ Este proyecto utiliza **Nest.js** con **TypeScript** y **TypeORM** para conectar
 
 - Para iniciar el servidor de desarrollo, usa el siguiente comando:
 
-  \```
+  ```shell
   npm run start:dev
-  \```
+  ```
 
   Esto iniciará la aplicación en modo desarrollo, lista para ser utilizada.
 
