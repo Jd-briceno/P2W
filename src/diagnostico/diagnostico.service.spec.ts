@@ -30,7 +30,7 @@ describe('DiagnosticoService', () => {
   });
 
   it('should create a diagnostico successfully', async () => {
-    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', paciente: null };
+    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', pacientes: null };
     jest.spyOn(diagnosticoRepository, 'save').mockResolvedValue(diagnostico);
 
     const result = await service.create(diagnostico);
@@ -39,13 +39,13 @@ describe('DiagnosticoService', () => {
 
   it('should throw an error if diagnostico description exceeds 200 characters', async () => {
     const descripcionLarga = 'a'.repeat(201);
-    const diagnostico: Diagnostico = { id: '2', nombre: 'Dolor de cabeza', descripcion: descripcionLarga, paciente: null };
+    const diagnostico: Diagnostico = { id: '2', nombre: 'Dolor de cabeza', descripcion: descripcionLarga, pacientes: null };
 
     await expect(service.create(diagnostico)).rejects.toThrow(BadRequestException);
   });
 
   it('should find a diagnostico by ID successfully', async () => {
-    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', paciente: null };
+    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', pacientes: null };
     jest.spyOn(diagnosticoRepository, 'findOne').mockResolvedValue(diagnostico);
 
     const result = await service.findOne('1');
@@ -59,7 +59,7 @@ describe('DiagnosticoService', () => {
   });
 
   it('should delete a diagnostico successfully', async () => {
-    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', paciente: null };
+    const diagnostico: Diagnostico = { id: '1', nombre: 'Dolor de cabeza', descripcion: 'Dolor persistente', pacientes: null };
     jest.spyOn(diagnosticoRepository, 'findOne').mockResolvedValue(diagnostico);
     jest.spyOn(diagnosticoRepository, 'delete').mockResolvedValue(undefined);
 

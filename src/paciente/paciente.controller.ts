@@ -58,4 +58,12 @@ export class PacienteController {
       throw error;
     }
   }
+
+  @Post(':pacienteId/diagnosticos/:diagnosticoId')
+  async addDiagnosticoToPaciente(
+    @Param('pacienteId') pacienteId: string,
+    @Param('diagnosticoId') diagnosticoId: string,
+  ): Promise<void> {
+    await this.pacienteService.addDiagnosticoToPaciente(pacienteId, diagnosticoId);
+  }
 }

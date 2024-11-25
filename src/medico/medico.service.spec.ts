@@ -60,7 +60,7 @@ describe('MedicoService', () => {
 
   it('should delete a medico successfully', async () => {
     const medico: Medico = { id: '1', nombre: 'Dr. Smith', especialidad: 'Cardiología', telefono: '123456', pacientes: [] };
-    jest.spyOn(service, 'findOne').mockResolvedValue(medico);
+    jest.spyOn(medicoRepository, 'findOne').mockResolvedValue(medico);
     jest.spyOn(medicoRepository, 'delete').mockResolvedValue(undefined);
 
     await expect(service.delete('1')).resolves.not.toThrow();
@@ -68,7 +68,7 @@ describe('MedicoService', () => {
 
   it('should throw an error if trying to delete a medico with patients', async () => {
     const medico: Medico = { id: '1', nombre: 'Dr. Smith', especialidad: 'Cardiología', telefono: '123456', pacientes: [{} as Paciente] };
-    jest.spyOn(service, 'findOne').mockResolvedValue(medico);
+    jest.spyOn(medicoRepository, 'findOne').mockResolvedValue(medico);
 
     await expect(service.delete('1')).rejects.toThrow(BadRequestException);
   });

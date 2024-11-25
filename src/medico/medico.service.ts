@@ -32,11 +32,15 @@ export class MedicoService {
   }
 
   async delete(id: string): Promise<void> {
-    const medico = await this.medicoRepository.findOne({ where: { id }  });
+    const medico = await this.medicoRepository.findOne({ where: { id }, relations: ['pacientes'] });
     console.log(medico)
-    if (medico.pacientes.length > 0) {
-      throw new BadRequestException('No se puede eliminar un médico con pacientes asociados');
+    if (!medico) {
+      throw new NotFoundException(`Médico con ID ${id} no encontrado`);
+    }
+    if (medico.pacientes && medico.pacientes.length > 0) {
+      throw new BadRequestException('No se puede eliminar un médico que tiene pacientes asociados');
     }
     await this.medicoRepository.delete(id);
   }
 }
+

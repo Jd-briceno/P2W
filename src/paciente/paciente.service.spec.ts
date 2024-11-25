@@ -3,6 +3,7 @@ import { PacienteService } from './paciente.service';
 import { Repository } from 'typeorm';
 import { Paciente } from './paciente.entity';
 import { Medico } from '../medico/medico.entity';
+import { Diagnostico } from '../diagnostico/diagnostico.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
@@ -10,6 +11,7 @@ describe('PacienteService', () => {
   let service: PacienteService;
   let pacienteRepository: Repository<Paciente>;
   let medicoRepository: Repository<Medico>;
+  let diagnosticoRepository: Repository<Diagnostico>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -30,12 +32,19 @@ describe('PacienteService', () => {
             findOne: jest.fn(),
           },
         },
+        {
+          provide: getRepositoryToken(Diagnostico),
+          useValue: {
+            findOne: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
     service = module.get<PacienteService>(PacienteService);
     pacienteRepository = module.get<Repository<Paciente>>(getRepositoryToken(Paciente));
     medicoRepository = module.get<Repository<Medico>>(getRepositoryToken(Medico));
+    diagnosticoRepository = module.get<Repository<Diagnostico>>(getRepositoryToken(Diagnostico));
   });
 
   // Pruebas para el método create
@@ -78,7 +87,7 @@ describe('PacienteService', () => {
   });
 
   it('should throw an error if trying to delete a patient with diagnostics', async () => {
-    const paciente: Paciente = { id: '1', nombre: 'Juan', genero: 'M', medicos: [], diagnosticos: [{ id: 'd1', nombre: 'Diagnostico', descripcion: 'Desc', paciente: null }] };
+    const paciente: Paciente = { id: '1', nombre: 'Juan', genero: 'M', medicos: [], diagnosticos: [{ id: 'd1', nombre: 'Diagnostico', descripcion: 'Desc', pacientes: [] }] };
     jest.spyOn(service, 'findOne').mockResolvedValue(paciente);
 
     await expect(service.delete('1')).rejects.toThrow(BadRequestException);

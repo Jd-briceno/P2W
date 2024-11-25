@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Paciente } from './paciente.entity';
 import { Medico } from '../medico/medico.entity';
+import { Diagnostico } from '../diagnostico/diagnostico.entity';
 
 @Injectable()
 export class PacienteService {
@@ -11,6 +12,8 @@ export class PacienteService {
     private readonly pacienteRepository: Repository<Paciente>,
     @InjectRepository(Medico)
     private readonly medicoRepository: Repository<Medico>,
+    @InjectRepository(Diagnostico)
+    private readonly diagnosticoRepository: Repository<Diagnostico>,
   ) {}
 
   async create(paciente: Paciente): Promise<Paciente> {
@@ -58,4 +61,23 @@ export class PacienteService {
     paciente.medicos.push(medico);
     await this.pacienteRepository.save(paciente);
   }
+
+  async addDiagnosticoToPaciente(pacienteId: string, diagnosticoId: string): Promise<void> {
+    const paciente = await this.pacienteRepository.findOne({ where: { id: pacienteId }, relations: ['diagnosticos'] });
+    if (!paciente) {
+      throw new NotFoundException('Paciente no encontrado');
+    }
+  
+    const diagnostico = await this.diagnosticoRepository.findOne({ where: { id: diagnosticoId } });
+    if (!diagnostico) {
+      throw new NotFoundException('Diagnóstico no encontrado');
+    }
+  
+    if (paciente.diagnosticos.some((d) => d.id === diagnosticoId)) {
+      throw new BadRequestException('El paciente ya tiene asignado este diagnóstico');
+    }
+  
+    paciente.diagnosticos.push(diagnostico);
+    await this.pacienteRepository.save(paciente);
+  }  
 }

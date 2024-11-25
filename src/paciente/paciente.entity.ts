@@ -12,11 +12,11 @@ export class Paciente {
 
   @Column()
   genero: string;
-
-  @ManyToMany(() => Medico)
-  @JoinTable()
+ 
+  @ManyToMany(() => Medico, (medico) => medico.pacientes)
   medicos: Medico[];
 
-  @OneToMany(() => Diagnostico, diagnostico => diagnostico.paciente)
+  @ManyToMany(() => Diagnostico, (diagnostico) => diagnostico.pacientes, { cascade: true })
+  @JoinTable()
   diagnosticos: Diagnostico[];
 }

@@ -5,10 +5,11 @@ import { Medico } from '../medico/medico.entity';
 import { PacienteService } from './paciente.service';
 import { PacienteController } from './paciente.controller';
 import { MedicoModule } from '../medico/medico.module';
+import { Diagnostico } from '../diagnostico/diagnostico.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Paciente, Medico]),
+    TypeOrmModule.forFeature([Paciente, Medico, Diagnostico]),
     MedicoModule,
   ],
   providers: [PacienteService],
