@@ -20,6 +20,7 @@ export class MedicoController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Medico> {
+    console.log(id)
     try {
       return await this.medicoService.findOne(id);
     } catch (error) {

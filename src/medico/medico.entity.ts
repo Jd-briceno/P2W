@@ -15,6 +15,6 @@ export class Medico {
   @Column()
   telefono: string;
 
-  @OneToMany(() => Paciente, paciente => paciente.medicos)
+  @OneToMany(() => Paciente, paciente => paciente.medicos, { cascade: true })
   pacientes: Paciente[];
 }

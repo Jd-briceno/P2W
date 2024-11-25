@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "a55199d4-196d-400f-b9ce-3963e28ebb75",
+		"_postman_id": "7123df95-bc74-49a0-ab91-4acd772a1af0",
 		"name": "API de Gestión de Diagnósticos",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19952733"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -25,8 +24,7 @@
 									"  pm.expect(jsonData).to.have.property('id');\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -35,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"genero\": \"M\"\r\n}",
+							"raw": "{\r\n  \"nombre\": \"Luis Ramirez\",\r\n  \"genero\": \"M\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -242,8 +240,7 @@
 									"  pm.expect(jsonData).to.have.property('id');\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -252,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Dr. Smith\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"123456789\"\r\n}",
+							"raw": "{\r\n  \"nombre\": \"Dr. Lee\",\r\n  \"especialidad\": \"Endocrinología\",\r\n  \"telefono\": \"998877665\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -447,8 +444,7 @@
 									"  pm.response.to.have.status(200);\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -456,7 +452,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/diagnosticos/{{diagnosticoId}}",
+							"raw": "http://localhost:3000/api/v1/diagnosticos/4d155f7e-83b1-4704-af38-ee688ceef111",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -466,7 +462,7 @@
 								"api",
 								"v1",
 								"diagnosticos",
-								"{{diagnosticoId}}"
+								"4d155f7e-83b1-4704-af38-ee688ceef111"
 							]
 						}
 					},
@@ -518,8 +514,7 @@
 									"  pm.response.to.have.status(200) || pm.response.to.have.status(204);\r",
 									"});"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -527,7 +522,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/diagnosticos/{{diagnosticoId}}",
+							"raw": "http://localhost:3000/api/v1/diagnosticos/4d155f7e-83b1-4704-af38-ee688ceef111",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,7 +532,7 @@
 								"api",
 								"v1",
 								"diagnosticos",
-								"{{diagnosticoId}}"
+								"4d155f7e-83b1-4704-af38-ee688ceef111"
 							]
 						}
 					},
